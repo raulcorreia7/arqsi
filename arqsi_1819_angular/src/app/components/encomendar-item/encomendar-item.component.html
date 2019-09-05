@@ -1,0 +1,18 @@
+<h1 mat-dialog-title>Encomendar</h1>
+
+<mat-dialog-content>
+  <br>
+  <mat-form-field>
+    <mat-select placeholder="Encomendas" [(ngModel)]="encomenda">
+      <mat-option *ngFor="let e of encomendas" [value]="e">
+        {{e.cliente}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div *ngIf="encomenda">
+    <button mat-raised-button color="primary" (click)="adicionarItemEncomenda()"><i class="material-icons">add</i></button>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button color="primary" (click)="close()">Fechar</button>
+</mat-dialog-actions>

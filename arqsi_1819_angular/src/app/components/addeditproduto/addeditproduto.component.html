@@ -1,0 +1,99 @@
+<h1 mat-dialog-title>{{title}} Produto</h1>
+<form [formGroup]="form">
+  <mat-dialog-content>
+    <section>
+      <mat-form-field>
+        <input matInput placeholder="Nome" formControlName="nome">
+      </mat-form-field>
+    </section>
+    <section>
+      <mat-form-field>
+        <mat-select placeholder="Categoria" formControlName="categoria" [compareWith]="compareFn">
+          <mat-option *ngFor="let c of categorias" [value]="c">{{c.Nome}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </section>
+    <section>
+      <mat-form-field>
+        <mat-select placeholder="Material e Acabamento" [(ngModel)]="matacab" [ngModelOptions]="{standalone: true}">
+          <mat-option *ngFor="let ma of materialacabamento" [value]="ma">{{ma.Material.Nome}} {{ma.Acabamento.Nome}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button mat-button (click)="addMaterialAcabamento()">Adicionar Material/Acabamento</button>
+      <table *ngFor="let ma of materialacabamentodefinido">
+        <td>{{ma.Material.Nome}} {{ma.Acabamento.Nome}}</td>
+        <td><button mat-button (click)="removerMaterialAcabamento(ma)">Apagar</button></td>
+      </table>
+    </section>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>Comprimento</mat-panel-title>
+      </mat-expansion-panel-header>
+      <section>
+        <mat-form-field>
+          <mat-select placeholder="Tipo Comprimento" formControlName="tipoComprimento">
+            <mat-option *ngFor="let tipo of tiposdimensao" [value]="tipo">{{tipo}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <input #something matInput placeholder="Comprimento" type="number" formArrayName="comprimento">
+          <button mat-button (click)="addComprimento(something.value)">Adicionar Comprimento</button>
+        </mat-form-field>
+        <table>
+          <tr *ngFor="let c of comprimento">
+            <td>{{c}}</td>
+            <td><button mat-button (click)="removerComprimento(c)">Apagar</button></td>
+          </tr>
+        </table>
+      </section>
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>Altura</mat-panel-title>
+      </mat-expansion-panel-header>
+      <section>
+        <mat-form-field>
+          <mat-select placeholder="Tipo Altura" formControlName="tipoAltura">
+            <mat-option *ngFor="let tipo of tiposdimensao" [value]="tipo">{{tipo}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <input #something1 matInput placeholder="Altura" type="number" formArrayName="altura">
+          <button mat-button (click)="addAltura(something1.value)">Adicionar Altura</button>
+        </mat-form-field>
+        <table>
+          <tr *ngFor="let a of altura">
+            <td>{{a}}</td>
+            <td><button mat-button (click)="removerAltura(a)">Apagar</button></td>
+          </tr>
+        </table>
+      </section>
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>Largura</mat-panel-title>
+      </mat-expansion-panel-header>
+      <section>
+        <mat-form-field>
+          <mat-select placeholder="Tipo Largura" formControlName="tipoLargura">
+            <mat-option *ngFor="let tipo of tiposdimensao" [value]="tipo">{{tipo}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <input #something2 matInput placeholder="Largura" type="number" formArrayName="largura">
+          <button mat-button (click)="addLargura(something2.value)">Adicionar Largura</button>
+        </mat-form-field>
+        <table>
+          <tr *ngFor="let l of largura">
+            <td>{{l}}</td>
+            <td><button mat-button (click)="removerLargura(l)">Apagar</button></td>
+          </tr>
+        </table>
+      </section>
+    </mat-expansion-panel>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-raised-button color="primary" (click)="save()">{{title}}</button>
+    <button mat-button (click)="onClose()">Fechar</button>
+  </mat-dialog-actions>
+</form>

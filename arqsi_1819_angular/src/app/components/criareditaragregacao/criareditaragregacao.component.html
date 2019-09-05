@@ -1,0 +1,87 @@
+<h1 mat-dialog-title>Partes de {{produtoBase.Nome}}</h1>
+
+<mat-dialog-content>
+  <mat-tab-group>
+
+    <mat-tab label="Adicionar">
+      <br>
+      <mat-form-field>
+        <mat-select placeholder="Produtos Possiveis" [(ngModel)]="produto">
+          <mat-option *ngFor="let p of produtosPartes" [value]="p">
+            {{p.Nome}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button mat-button (click)="adicionarAgregacao(produto)">Agregar</button>
+    </mat-tab>
+
+    <mat-tab label="Editar">
+      <br>
+      <mat-form-field>
+        <mat-select placeholder="Agregados" [(ngModel)]="agregacao">
+          <mat-option *ngFor="let a of agregacoes" [value]="a">
+            {{a.ProdutoParte.Nome}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div *ngIf="agregacao != null">
+        <mat-form-field>
+          <mat-select placeholder="Tipo Restricao" [(ngModel)]="restricao">
+            <mat-option *ngFor="let r of map | keyvalue" [value]="r">
+              {{r.value}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div *ngIf="restricao">
+          <div *ngIf="restricao.key == 5">
+            <section>
+              <p>Largura</p>
+              Min
+              <mat-slider thumbLabel min="0" max="1" step="0.05" [(ngModel)]="larguraMin"></mat-slider>
+              Max
+              <mat-slider thumbLabel min="0" max="1" step="0.05" [(ngModel)]="larguraMax"></mat-slider>
+            </section>
+            <section>
+              <p>Altura</p>
+              Min
+              <mat-slider thumbLabel min="0" max="1" step="0.05" [(ngModel)]="alturaMin"></mat-slider>
+              Max
+              <mat-slider thumbLabel min="0" max="1" step="0.05" [(ngModel)]="alturaMax"></mat-slider>
+            </section>
+            <section>
+              <p>Comprimento</p>
+              Min
+              <mat-slider thumbLabel min="0" max="1" step="0.05" [(ngModel)]="comprimentoMin"></mat-slider>
+              Max
+              <mat-slider thumbLabel min="0" max="1" step="0.05" [(ngModel)]="comprimentoMax"></mat-slider>
+            </section>
+          </div>
+        </div>
+        <button mat-raised-button color="primary" (click)="adicionarRestricao(restricao)"><i class="material-icons">add</i></button>
+        <table *ngFor="let r of agregacao.Restricoes">
+          <td>{{r.Nome}}</td>
+          <td><button mat-button color="warn" (click)="apagarRestricao(r)"><i class="material-icons">delete</i></button></td>
+        </table>
+      </div>
+    </mat-tab>
+    <mat-tab label="Remover">
+      <br>
+      <mat-form-field>
+        <mat-select placeholder="Agregados" [(ngModel)]="agregacao">
+          <mat-option *ngFor="let a of agregacoes" [value]="a">
+            {{a.ProdutoParte.Nome}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div *ngIf="agregacao != null">
+        <button mat-raised-button color="warn" (click)="apagarAgregacao()">Apagar</button>
+      </div>
+    </mat-tab>
+
+
+  </mat-tab-group>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-raised-button color="primary" (click)="cancel()">Fechar</button>
+</mat-dialog-actions>

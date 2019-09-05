@@ -1,0 +1,23 @@
+Altera��es IT 1
+
+C#
+DONE:2 - Um produto pode ser de v�rios materiais e 
+esse material pode ter v�rios acabamentos;
+
+DONE:3- Criar uma restri��o de material
+
+DONE:4- Restri��o de dimensao
+
+DONE:5- Restri��o obrigat�ria
+
+DONE:6- Adicionar um tipo de agrega��o (Obrigat�rio, Opcional(default)) 
+
+FIXME: TESTES
+    TODO:Categoria
+    TODO:Material
+    TODO:Acabamento
+    TODO:MaterialAcabamento
+
+---
+Documentação
+Verificar diagrama de nós com o professor

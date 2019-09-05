@@ -1,0 +1,46 @@
+Encomenda:
+    ✔ Adicionar Item @done(18-11-10 22:53)
+    ✔ Remover Item @done(18-11-10 22:53)
+    ✔ Finalizar @done(18-11-10 22:37)
+
+TESTES:
+    ☐ Testes postman @critical  
+    ☐ Testes unitarios @low 
+Documentacao:
+    ☐ Classes
+    ☐ Diagramas
+        ✔ Seq Simples @done(18-11-11 14:51)
+        ☐ Detalhados
+            ✔ Packages/Componente @done(18-11-11 14:52)
+            ☐ Digrama de classes com composicao
+API Nodejs
+
+Encomenda/
+Archive:
+  ✔ Não deixar editar itens que estejam já encomendados @done(18-11-10 16:14) @project(ItemDeProduto)
+  ✔ Adicionar SubProdutos @project(Encomendas) @low @done(18-11-10 22:02) @project(ItemDeProduto)
+  ✔ Remover Sub Produto @low @done(18-11-10 22:02) @project(ItemDeProduto)
+  ✔ TODO:ESTADO AOS ITEMS DE PRODUTO - @high @done(18-11-10 00:36) @project(ItemDeProduto)
+  ✔ * em construção @done(18-11-10 00:37) @project(ItemDeProduto)
+  ✔ * encomendado @done(18-11-10 00:37) @project(ItemDeProduto)
+  ✔ Fazer updates/updates aos items @low @done(18-11-10 00:36) @project(PUTS)
+  ✔ criar item de produto @done(18-11-09 13:55)
+  ✔ :validar material acabamento @done(18-11-09 13:55)
+  ✔ :validar dimensao @done(18-11-09 13:55)
+  ✔ :criar agregacao @done(18-11-09 13:55)
+  ✔ AGREGACAO @done(18-11-09 13:55)
+  ✔ validar agregacao @done(18-11-09 13:55)
+  ✔ Validar Caber @done(18-11-09 13:55)
+  ✔ Validar Material @done(18-11-09 13:56)
+  ✔ DONE: Validar Ocupacao @done(18-11-09 14:03)
+  ✔ DONE: Obrigatorio @done(18-11-09 14:03)
+  ✔ DONE: Metodo Recursivo @done(18-11-09 14:03)
+  ✔ Criar Encomenda @high @done(18-11-09 15:05) @project(Encomendas)
+  ✔ TODO:Validar Produtos @done(18-11-09 14:06) @project(Encomendas)
+  ✔ TODO:Validar Encomendas Obrigatorios @critical @done(18-11-09 16:07) @project(Encomendas)
+  ✔ DONE:Schema com referencia a Item @done(18-11-09 14:06) @project(Encomendas)
+  ✔ DONE:Mostrar DTO @done(18-11-09 14:06) @project(Encomendas)
+  ✔ DONE:Gravar @done(18-11-09 14:06) @project(Encomendas)
+  ✔ TODO:DTO SIMPLES MOSTRAR ITEMS DE PRODUTO TODOS @done(18-11-09 14:06)
+  ✔ TODO:CONVERTER UMA ARVORE ITEMDEPRODUTOVALIDACAODTO @done(18-11-09 14:06)
+  

@@ -1,0 +1,4 @@
+{
+    "appService.deploySubpath": "dist\\my-app",
+    "appService.defaultWebAppToDeploy": "None"
+}

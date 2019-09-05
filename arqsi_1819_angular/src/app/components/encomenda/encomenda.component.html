@@ -1,0 +1,46 @@
+<div>
+  <br>
+  <mat-divider style="width: 70%; margin: auto"></mat-divider>
+  <br>
+  <table mat-table [dataSource]="itensproduto" class="mat-elevation-z8">
+    <ng-container matColumnDef="acoes">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-button color="primary" (click)="editItemProduto($event, element)"><i class="material-icons">edit</i></button>
+        <button mat-button color="warn" (click)="deleteItemProduto($event, element.id)"><i class="material-icons">delete</i></button>
+        <button mat-button color="primary" (click)="partesItemProduto($event,element)"><i class="material-icons">pages</i></button>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="nome">
+      <th mat-header-cell *matHeaderCellDef> Nome </th>
+      <td mat-cell *matCellDef="let element"> {{element.Nome}} </td>
+    </ng-container>
+    <ng-container matColumnDef="materialacabamento">
+      <th mat-header-cell *matHeaderCellDef> Material e Acabamento </th>
+      <td mat-cell *matCellDef="let element"> {{element.Material}} {{element.Acabamento}}</td>
+    </ng-container>
+    <ng-container matColumnDef="comprimento">
+      <th mat-header-cell *matHeaderCellDef> Comprimento </th>
+      <td mat-cell *matCellDef="let element"> {{element.Dimensao.Comprimento}} </td>
+    </ng-container>
+    <ng-container matColumnDef="largura">
+      <th mat-header-cell *matHeaderCellDef> Largura </th>
+      <td mat-cell *matCellDef="let element"> {{element.Dimensao.Largura}} </td>
+    </ng-container>
+    <ng-container matColumnDef="altura">
+      <th mat-header-cell *matHeaderCellDef> Altura </th>
+      <td mat-cell *matCellDef="let element"> {{element.Dimensao.Altura}} </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row (click)="encomendarItem($event, row)" *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <div style="display: flex; justify-content: center; align-items: center; padding: 10px;">
+    <mat-progress-spinner *ngIf="isLoading" color="primary" mode="indeterminate">
+    </mat-progress-spinner>
+  </div>
+
+  <br>
+  <mat-divider style="width: 70%; margin: auto"></mat-divider>
+  <br>
+</div>

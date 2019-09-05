@@ -1,0 +1,54 @@
+a.navbar-brand {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 900;
+    padding: 8px 20px;
+    text-decoration: none;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: rgb(41, 47, 78);
+}
+
+li {
+    float: left;
+    display: flex;
+    justify-content: center;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 20px 30px;
+    text-decoration: none;
+    transition-property: background;
+    transition-duration: 0.5s;
+    transition-timing-function: linear;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+    background-color: rgb(93, 101, 168);
+}
+
+li .active-link {
+    background-color: rgb(50, 55, 102);
+    text-decoration: underline;
+}
+
+.mat-sidenav-content {
+    height: 100vh;
+}
+
+.mat-sidenav {
+    width: 300px;
+    text-align: center;
+}

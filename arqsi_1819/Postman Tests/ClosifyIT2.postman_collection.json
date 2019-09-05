@@ -1,0 +1,6754 @@
+{
+	"info": {
+		"_postman_id": "ac877165-414e-4736-bdbd-99844e6569d0",
+		"name": "ClosifyIT2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Tests",
+			"item": [
+				{
+					"name": "Categoria Cycle Test",
+					"item": [
+						{
+							"name": "Get Categoria Fail",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "a200e076-0c47-4116-be0e-1096928d8b21",
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {",
+											"    pm.response.to.have.status(404);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "d4d610db-9440-4815-bcad-3b77d1c08d84",
+										"exec": [
+											"var nomeCategoria = \"SUPERXPTO\"",
+											"pm.globals.set(\"supercategoria\",nomeCategoria);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{host}}/api/Categoria/?nome={{supercategoria}}",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"Categoria",
+										""
+									],
+									"query": [
+										{
+											"key": "nome",
+											"value": "{{supercategoria}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Categoria",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "a4b41abe-f963-4e85-8791-a0fde8741b19",
+										"exec": [
+											"var catID;",
+											"",
+											"pm.test(\"Successful POST request\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    catID = jsonData.id;",
+											"    pm.globals.set(\"supercategoriaid\", catID);",
+											"    pm.expect(pm.response.code).to.be.oneOf([201,202]);",
+											"});",
+											"",
+											"pm.test(\"Status code name has string\", function () {",
+											"    pm.response.to.have.status(\"Created\");",
+											"});",
+											"",
+											"pm.test(\"Body matches string\", function () {",
+											"    var nomeCategoria = pm.globals.get(\"supercategoria\")",
+											"    pm.expect(pm.response.text()).to.include(nomeCategoria);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\tNome: \"{{supercategoria}}\"\n}"
+								},
+								"url": {
+									"raw": "{{host}}/api/Categoria",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"Categoria"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get SubCategoria Fail",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "b5be7bae-ea7e-4d8c-9398-d56d26786a94",
+										"exec": [
+											"var nomeCategoria = \"SUBCATEGORIAXPTO\"",
+											"pm.globals.set(\"subcategoria\",nomeCategoria);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "96ae8e6d-77d8-43f7-9f5a-d1ef04bd8f03",
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {",
+											"    pm.response.to.have.status(404);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{host}}/api/Categoria/?nome={{subcategoria}}",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"Categoria",
+										""
+									],
+									"query": [
+										{
+											"key": "nome",
+											"value": "{{subcategoria}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Subcategoria",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "66ce31c5-f888-45ca-9558-19b15261f60f",
+										"exec": [
+											"var subcatID;",
+											"",
+											"pm.test(\"Successful POST request\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    subcatID = jsonData.id;",
+											"    pm.globals.set(\"subcatid\", subcatID);",
+											"    ",
+											"    pm.expect(pm.response.code).to.be.oneOf([201,202]);",
+											"});",
+											"",
+											"pm.test(\"Status code name has string\", function () {",
+											"    pm.response.to.have.status(\"Created\");",
+											"});",
+											"",
+											"pm.test(\"Body matches string\", function () {",
+											"    var nomeCategoria = pm.globals.get(\"subcategoria\")",
+											"    pm.expect(pm.response.text()).to.include(nomeCategoria);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\tNome: \"{{subcategoria}}\",\n\tSuperCategoria: {{supercategoriaid}}\n}"
+								},
+								"url": {
+									"raw": "{{host}}/api/Categoria",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"Categoria"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Categoria",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "a200e076-0c47-4116-be0e-1096928d8b21",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Body matches string\", function () {",
+											"    var nomeCategoria = pm.globals.get(\"subcategoria\")",
+											"    pm.expect(pm.response.text()).to.include(nomeCategoria);",
+											"});",
+											"",
+											"pm.test(\"Content-Type is present\", function () {",
+											"    pm.response.to.have.header(\"Content-Type\");",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{host}}/api/Categoria/{{subcatid}}",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"Categoria",
+										"{{subcatid}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Subcategoria",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "eb8f6b5d-3cea-4e07-a497-53a72092ad24",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{host}}/api/Categoria/{{subcatid}}",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"Categoria",
+										"{{subcatid}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Categoria",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "b01e656d-297f-4e62-831e-4837aadcbfe8",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "27f7765a-ffd2-47c1-b666-397dc20b9067",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{host}}/api/Categoria/{{supercategoriaid}}",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"Categoria",
+										"{{supercategoriaid}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Categoria Fail",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "a200e076-0c47-4116-be0e-1096928d8b21",
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {",
+											"    pm.response.to.have.status(404);",
+											"",
+											"});",
+											"pm.globals.unset(\"supercategoria\")",
+											"pm.globals.unset(\"supercategoriaid\")"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "d4d610db-9440-4815-bcad-3b77d1c08d84",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{host}}/api/Categoria/?nome={{supercategoriaid}}",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"Categoria",
+										""
+									],
+									"query": [
+										{
+											"key": "nome",
+											"value": "{{supercategoriaid}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get SubCategoria Fail",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "a200e076-0c47-4116-be0e-1096928d8b21",
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {",
+											"    pm.response.to.have.status(404);",
+											"",
+											"});",
+											"pm.globals.unset(\"subcategoria\")",
+											"pm.globals.unset(\"subcatid\")"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "d4d610db-9440-4815-bcad-3b77d1c08d84",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{host}}/api/Categoria/?nome={{supercategoriaid}}",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"Categoria",
+										""
+									],
+									"query": [
+										{
+											"key": "nome",
+											"value": "{{supercategoriaid}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "MaterialAcabamento",
+					"item": [
+						{
+							"name": "Get Material Random1 Fail",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "4e881441-e045-454a-bca2-7606feac5997",
+										"exec": [
+											"var nomeMaterial = \"Random1\"",
+											"pm.globals.set(\"material1\",nomeMaterial);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "14e9be51-9fbc-49f4-85e3-0ad96ca3200a",
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {",
+											"    pm.response.to.have.status(404);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{host}}/api/Material/?nome={{material1}}",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"Material",
+										""
+									],
+									"query": [
+										{
+											"key": "nome",
+											"value": "{{material1}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Material Random1",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "869957e2-b381-4809-91c0-43b96cd56fea",
+										"exec": [
+											"var materialid;",
+											"",
+											"pm.test(\"Successful POST request\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    materialid = jsonData.id;",
+											"    pm.globals.set(\"material1id\", materialid);",
+											"    pm.expect(pm.response.code).to.be.oneOf([201,202]);",
+											"});",
+											"pm.test(\"Body matches string\", function () {",
+											"    var nomeMaterial = pm.globals.get(\"material1\")",
+											"    pm.expect(pm.response.text()).to.include(nomeMaterial);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"nome\" : \"{{material1}}\"\n}"
+								},
+								"url": {
+									"raw": "{{host}}/api/Material",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"Material"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Material Random1 Fail",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "869957e2-b381-4809-91c0-43b96cd56fea",
+										"exec": [
+											"pm.test(\"BAD POST request\", function () {",
+											"    pm.expect(pm.response.code).to.be.oneOf([400]);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"nome\" : \"{{material1}}\"\n}"
+								},
+								"url": {
+									"raw": "{{host}}/api/Material",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"Material"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Put Material1",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "869957e2-b381-4809-91c0-43b96cd56fea",
+										"exec": [
+											"pm.test(\"Successful put request\", function () {",
+											"    pm.expect(pm.response.code).to.be.oneOf([200]);",
+											"});",
+											"",
+											"pm.test(\"Body matches string\", function () {",
+											"    var nomeMaterial = pm.globals.get(\"material1\")",
+											"    pm.expect(pm.response.text()).to.include(nomeMaterial);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "7b3a7b98-0209-43a7-916c-34e4ebdebda3",
+										"exec": [
+											"var nomeMaterial = pm.globals.get(\"material1\");",
+											"var nomeMaterial = nomeMaterial+ \"X\";",
+											"pm.globals.set(\"material1\",nomeMaterial);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"nome\" : \"{{material1}}\"\n}"
+								},
+								"url": {
+									"raw": "{{host}}/api/Material/{{material1id}}",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"Material",
+										"{{material1id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Material Random1 Success",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "4e881441-e045-454a-bca2-7606feac5997",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "14e9be51-9fbc-49f4-85e3-0ad96ca3200a",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Body matches string\", function () {",
+											"    var material = pm.globals.get(\"material1\")",
+											"    pm.expect(pm.response.text()).to.include(material);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{host}}/api/Material/{{material1id}}",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"Material",
+										"{{material1id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Material Random2 Fail",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "4e881441-e045-454a-bca2-7606feac5997",
+										"exec": [
+											"var nomeMaterial = \"Random2\"",
+											"pm.globals.set(\"material2\",nomeMaterial);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "14e9be51-9fbc-49f4-85e3-0ad96ca3200a",
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {",
+											"    pm.response.to.have.status(404);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{host}}/api/Material/?nome={{material2}}",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"Material",
+										""
+									],
+									"query": [
+										{
+											"key": "nome",
+											"value": "{{material2}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Material Random2",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "869957e2-b381-4809-91c0-43b96cd56fea",
+										"exec": [
+											"var materialid;",
+											"",
+											"pm.test(\"Successful POST request\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    materialid = jsonData.id;",
+											"    pm.globals.set(\"material2id\", materialid);",
+											"    pm.expect(pm.response.code).to.be.oneOf([201,202]);",
+											"});",
+											"pm.test(\"Body matches string\", function () {",
+											"    var nomeMaterial = pm.globals.get(\"material2\")",
+											"    pm.expect(pm.response.text()).to.include(nomeMaterial);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"nome\" : \"{{material2}}\"\n}"
+								},
+								"url": {
+									"raw": "{{host}}/api/Material",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"Material"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Material Random2 Fail",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "869957e2-b381-4809-91c0-43b96cd56fea",
+										"exec": [
+											"pm.test(\"BAD POST request\", function () {",
+											"    pm.expect(pm.response.code).to.be.oneOf([400]);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"nome\" : \"{{material2}}\"\n}"
+								},
+								"url": {
+									"raw": "{{host}}/api/Material",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"Material"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Put Material2",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "869957e2-b381-4809-91c0-43b96cd56fea",
+										"exec": [
+											"pm.test(\"Successful put request\", function () {",
+											"    pm.expect(pm.response.code).to.be.oneOf([200]);",
+											"});",
+											"",
+											"pm.test(\"Body matches string\", function () {",
+											"    var nomeMaterial = pm.globals.get(\"material2\")",
+											"    pm.expect(pm.response.text()).to.include(nomeMaterial);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "7b3a7b98-0209-43a7-916c-34e4ebdebda3",
+										"exec": [
+											"var nomeMaterial = pm.globals.get(\"material2\");",
+											"var nomeMaterial = nomeMaterial+ \"Y\";",
+											"pm.globals.set(\"material2\",nomeMaterial);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"nome\" : \"{{material2}}\"\n}"
+								},
+								"url": {
+									"raw": "{{host}}/api/Material/{{material2id}}",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"Material",
+										"{{material2id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Material Random2 Success",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "4e881441-e045-454a-bca2-7606feac5997",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "14e9be51-9fbc-49f4-85e3-0ad96ca3200a",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Body matches string\", function () {",
+											"    var material = pm.globals.get(\"material2\")",
+											"    pm.expect(pm.response.text()).to.include(material);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{host}}/api/Material/{{material2id}}",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"Material",
+										"{{material2id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Acabamento1 Fail",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "7a25c489-2dd0-4c99-8e99-38962ae6ca78",
+										"exec": [
+											"var nomeAcabamento = \"AcabamentoRandom1\"",
+											"pm.globals.set(\"acabamento1\",nomeAcabamento);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "163fb105-d8c9-4d05-b983-a24a66fdebaa",
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {",
+											"    pm.response.to.have.status(404);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{host}}/api/Acabamento/?nome={{acabamento1}}",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"Acabamento",
+										""
+									],
+									"query": [
+										{
+											"key": "nome",
+											"value": "{{acabamento1}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Post Acabamento1",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "d38062e9-8ee9-4924-b455-32379d0aa534",
+										"exec": [
+											"var acabamento1id;",
+											"",
+											"pm.test(\"Successful POST request\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    acabamento1id = jsonData.id;",
+											"    pm.globals.set(\"acabamento1id\", acabamento1id);",
+											"    pm.expect(pm.response.code).to.be.oneOf([201,202]);",
+											"});",
+											"pm.test(\"Body matches string\", function () {",
+											"    var nomeAcabamento = pm.globals.get(\"acabamento1\")",
+											"    pm.expect(pm.response.text()).to.include(nomeAcabamento);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"Nome\" : \"{{acabamento1}}\"\n}"
+								},
+								"url": {
+									"raw": "{{host}}/api/Acabamento/",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"Acabamento",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Post Acabamento1 Fail",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "d38062e9-8ee9-4924-b455-32379d0aa534",
+										"exec": [
+											"pm.test(\"BAD POST request\", function () {",
+											"    pm.expect(pm.response.code).to.be.oneOf([400]);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"Nome\" : \"{{acabamento1}}\"\n}"
+								},
+								"url": {
+									"raw": "{{host}}/api/Acabamento/",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"Acabamento",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Put Acabamento1",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "42c9d580-bec4-4034-9fab-1c1ede4107d8",
+										"exec": [
+											"var nome = pm.globals.get(\"acabamento1\");",
+											"var nome = nome+ \"A\";",
+											"pm.globals.set(\"acabamento1\",nome);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "292a17e0-9bb1-46ae-b40f-334b19e3a30a",
+										"exec": [
+											"pm.test(\"Successful put request\", function () {",
+											"    pm.expect(pm.response.code).to.be.oneOf([200]);",
+											"});",
+											"",
+											"pm.test(\"Body matches string\", function () {",
+											"    var nomeAcabamento = pm.globals.get(\"acabamento1\")",
+											"    pm.expect(pm.response.text()).to.include(nomeAcabamento);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"Nome\" : \"{{acabamento1}}\"\n}"
+								},
+								"url": {
+									"raw": "{{host}}/api/Acabamento/{{acabamento1id}}",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"Acabamento",
+										"{{acabamento1id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Acabamento1 Success",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "7a25c489-2dd0-4c99-8e99-38962ae6ca78",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "163fb105-d8c9-4d05-b983-a24a66fdebaa",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Body matches string\", function () {",
+											"    var nomeAcabamento = pm.globals.get(\"acabamento1\")",
+											"    pm.expect(pm.response.text()).to.include(nomeAcabamento);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{host}}/api/Acabamento/?nome={{acabamento1}}",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"Acabamento",
+										""
+									],
+									"query": [
+										{
+											"key": "nome",
+											"value": "{{acabamento1}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Acabamento2 Fail",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "7a25c489-2dd0-4c99-8e99-38962ae6ca78",
+										"exec": [
+											"var nome = \"AcabamentoRandom2\"",
+											"pm.globals.set(\"acabamento2\",nome);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "163fb105-d8c9-4d05-b983-a24a66fdebaa",
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {",
+											"    pm.response.to.have.status(404);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{host}}/api/Acabamento/?nome={{acabamento2}}",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"Acabamento",
+										""
+									],
+									"query": [
+										{
+											"key": "nome",
+											"value": "{{acabamento2}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Post Acabamento2",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "d38062e9-8ee9-4924-b455-32379d0aa534",
+										"exec": [
+											"var id;",
+											"",
+											"pm.test(\"Successful POST request\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    id = jsonData.id;",
+											"    pm.globals.set(\"acabamento2id\", id);",
+											"    pm.expect(pm.response.code).to.be.oneOf([201,202]);",
+											"});",
+											"pm.test(\"Body matches string\", function () {",
+											"    var nomeAcabamento = pm.globals.get(\"acabamento2\")",
+											"    pm.expect(pm.response.text()).to.include(nomeAcabamento);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"Nome\" : \"{{acabamento2}}\"\n}"
+								},
+								"url": {
+									"raw": "{{host}}/api/Acabamento/",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"Acabamento",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Post Acabamento2 Fail",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "d38062e9-8ee9-4924-b455-32379d0aa534",
+										"exec": [
+											"pm.test(\"BAD POST request\", function () {",
+											"    pm.expect(pm.response.code).to.be.oneOf([400]);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"Nome\" : \"{{acabamento2}}\"\n}"
+								},
+								"url": {
+									"raw": "{{host}}/api/Acabamento/",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"Acabamento",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Put Acabamento2",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "42c9d580-bec4-4034-9fab-1c1ede4107d8",
+										"exec": [
+											"var nome = pm.globals.get(\"acabamento2\");",
+											"var nome = nome+ \"A\";",
+											"pm.globals.set(\"acabamento2\",nome);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "292a17e0-9bb1-46ae-b40f-334b19e3a30a",
+										"exec": [
+											"pm.test(\"Successful put request\", function () {",
+											"    pm.expect(pm.response.code).to.be.oneOf([200]);",
+											"});",
+											"",
+											"pm.test(\"Body matches string\", function () {",
+											"    var nomeAcabamento = pm.globals.get(\"acabamento2\")",
+											"    pm.expect(pm.response.text()).to.include(nomeAcabamento);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"Nome\" : \"{{acabamento2}}\"\n}"
+								},
+								"url": {
+									"raw": "{{host}}/api/Acabamento/{{acabamento2id}}",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"Acabamento",
+										"{{acabamento2id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Post MaterialAcabamento1",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "9e09f444-ff79-44b5-82cc-05c3718ae50f",
+										"exec": [
+											"var id;",
+											"",
+											"pm.test(\"Successful POST request\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    id = jsonData.id;",
+											"    pm.globals.set(\"matacabid1\", id);",
+											"    pm.expect(pm.response.code).to.be.oneOf([201,202]);",
+											"",
+											"});",
+											"pm.test(\"Body matches string\", function () {",
+											"    var nomeMaterial    = pm.globals.get(\"material1\");",
+											"    var nomeAcabamento  = pm.globals.get(\"acabamento1\");",
+											"    pm.expect(pm.response.text()).to.include(nomeAcabamento);",
+											"    pm.expect(pm.response.text()).to.include(nomeMaterial);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"Material\" : {\n\t\t\"id\" : {{material1id}}\n\t\t},\n\t\"Acabamento\" : {\n\t\t\"id\" : {{acabamento1id}}\n\t}\n}"
+								},
+								"url": {
+									"raw": "{{host}}/api/MaterialAcabamento/",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"MaterialAcabamento",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Post MaterialAcabamento1 Fail",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "d38062e9-8ee9-4924-b455-32379d0aa534",
+										"exec": [
+											"pm.test(\"BAD POST request\", function () {",
+											"    pm.expect(pm.response.code).to.be.oneOf([400]);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"Material\" : {\n\t\t\"id\" : {{material1id}}\n\t\t},\n\t\"Acabamento\" : {\n\t\t\"id\" : {{acabamento1id}}\n\t}\n}"
+								},
+								"url": {
+									"raw": "{{host}}/api/MaterialAcabamento/",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"MaterialAcabamento",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get MaterialAcabamento1 Success",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "7a25c489-2dd0-4c99-8e99-38962ae6ca78",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "163fb105-d8c9-4d05-b983-a24a66fdebaa",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Body matches string\", function () {",
+											"    var nomeMaterial    = pm.globals.get(\"material1\");",
+											"    var nomeAcabamento  = pm.globals.get(\"acabamento1\");",
+											"    pm.expect(pm.response.text()).to.include(nomeAcabamento);",
+											"    pm.expect(pm.response.text()).to.include(nomeMaterial);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{host}}/api/MaterialAcabamento/{{matacabid1}}",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"MaterialAcabamento",
+										"{{matacabid1}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Post MaterialAcabamento2",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "9e09f444-ff79-44b5-82cc-05c3718ae50f",
+										"exec": [
+											"var id;",
+											"",
+											"pm.test(\"Successful POST request\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    id = jsonData.id;",
+											"    pm.globals.set(\"matacabid2\", id);",
+											"    pm.expect(pm.response.code).to.be.oneOf([201,202]);",
+											"",
+											"});",
+											"pm.test(\"Body matches string\", function () {",
+											"    var nomeMaterial    = pm.globals.get(\"material1\");",
+											"    var nomeAcabamento  = pm.globals.get(\"acabamento2\");",
+											"    pm.expect(pm.response.text()).to.include(nomeAcabamento);",
+											"    pm.expect(pm.response.text()).to.include(nomeMaterial);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"Material\" : {\n\t\t\"id\" : {{material1id}}\n\t\t},\n\t\"Acabamento\" : {\n\t\t\"id\" : {{acabamento2id}}\n\t}\n}"
+								},
+								"url": {
+									"raw": "{{host}}/api/MaterialAcabamento/",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"MaterialAcabamento",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Post MaterialAcabamento2 Fail",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "d38062e9-8ee9-4924-b455-32379d0aa534",
+										"exec": [
+											"pm.test(\"BAD POST request\", function () {",
+											"    pm.expect(pm.response.code).to.be.oneOf([400]);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"Material\" : {\n\t\t\"id\" : {{material1id}}\n\t\t},\n\t\"Acabamento\" : {\n\t\t\"id\" : {{acabamento2id}}\n\t}\n}"
+								},
+								"url": {
+									"raw": "{{host}}/api/MaterialAcabamento/",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"MaterialAcabamento",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get MaterialAcabamento2 Success",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "7a25c489-2dd0-4c99-8e99-38962ae6ca78",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "163fb105-d8c9-4d05-b983-a24a66fdebaa",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Body matches string\", function () {",
+											"    var nomeMaterial    = pm.globals.get(\"material1\");",
+											"    var nomeAcabamento  = pm.globals.get(\"acabamento2\");",
+											"    pm.expect(pm.response.text()).to.include(nomeAcabamento);",
+											"    pm.expect(pm.response.text()).to.include(nomeMaterial);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{host}}/api/MaterialAcabamento/{{matacabid2}}",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"MaterialAcabamento",
+										"{{matacabid2}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete MaterialAcabamento2",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "ca7da35f-0908-41e9-9e16-ea1ba174d778",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{host}}/api/MaterialAcabamento/{{matacabid2}}",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"MaterialAcabamento",
+										"{{matacabid2}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete MaterialAcabamento1",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "ca7da35f-0908-41e9-9e16-ea1ba174d778",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{host}}/api/MaterialAcabamento/{{matacabid1}}",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"MaterialAcabamento",
+										"{{matacabid1}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Material Random1",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "ca7da35f-0908-41e9-9e16-ea1ba174d778",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{host}}/api/Material/{{material1id}}",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"Material",
+										"{{material1id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Material Random2",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "ca7da35f-0908-41e9-9e16-ea1ba174d778",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{host}}/api/Material/{{material2id}}",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"Material",
+										"{{material2id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Acabamento1",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "ca7da35f-0908-41e9-9e16-ea1ba174d778",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{host}}/api/Acabamento/{{acabamento1id}}",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"Acabamento",
+										"{{acabamento1id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Acabamento2",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "ca7da35f-0908-41e9-9e16-ea1ba174d778",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{host}}/api/Acabamento/{{acabamento2id}}",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"Acabamento",
+										"{{acabamento2id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get MaterialAcabamento2 Fail",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "a279cd17-9a59-4bcf-80f4-e27d41e3235e",
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {",
+											"    pm.response.to.have.status(404);",
+											"});",
+											"pm.globals.unset(\"matacabid2\")"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{host}}/api/MaterialAcabamento/{{matacabid2}}",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"MaterialAcabamento",
+										"{{matacabid2}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get MaterialAcabamento1 Fail",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "a279cd17-9a59-4bcf-80f4-e27d41e3235e",
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {",
+											"    pm.response.to.have.status(404);",
+											"});",
+											"pm.globals.unset(\"matacabid1\")"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{host}}/api/MaterialAcabamento/{{matacabid1}}",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"MaterialAcabamento",
+										"{{matacabid1}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Material1 Fail",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "4e881441-e045-454a-bca2-7606feac5997",
+										"exec": [
+											"var nomeMaterial = \"Random1\"",
+											"pm.globals.set(\"material1\",nomeMaterial);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "14e9be51-9fbc-49f4-85e3-0ad96ca3200a",
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {",
+											"    pm.response.to.have.status(404);",
+											"});",
+											"",
+											"pm.globals.unset(\"material1id\");",
+											"pm.globals.unset(\"material1\");"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{host}}/api/Material/{{material1id}}",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"Material",
+										"{{material1id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Material2 Fail",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "4e881441-e045-454a-bca2-7606feac5997",
+										"exec": [
+											"var nomeMaterial = \"Random1\"",
+											"pm.globals.set(\"material1\",nomeMaterial);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "14e9be51-9fbc-49f4-85e3-0ad96ca3200a",
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {",
+											"    pm.response.to.have.status(404);",
+											"});",
+											"",
+											"pm.globals.unset(\"material2id\");",
+											"pm.globals.unset(\"material2\");"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{host}}/api/Material/{{material2id}}",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"Material",
+										"{{material2id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Acabamento1 Fail",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "4e881441-e045-454a-bca2-7606feac5997",
+										"exec": [
+											"var nomeMaterial = \"Random1\"",
+											"pm.globals.set(\"material1\",nomeMaterial);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "14e9be51-9fbc-49f4-85e3-0ad96ca3200a",
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {",
+											"    pm.response.to.have.status(404);",
+											"});",
+											"",
+											"pm.globals.unset(\"acabamento1id\")",
+											"pm.globals.unset(\"acabamento1\")"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{host}}/api/Acabamento/{{acabamento1id}}",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"Acabamento",
+										"{{acabamento1id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Acabamento2 Fail",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "4e881441-e045-454a-bca2-7606feac5997",
+										"exec": [
+											"var nomeMaterial = \"Random1\"",
+											"pm.globals.set(\"material1\",nomeMaterial);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "14e9be51-9fbc-49f4-85e3-0ad96ca3200a",
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {",
+											"    pm.response.to.have.status(404);",
+											"});",
+											"",
+											"pm.globals.unset(\"acabamento2id\")",
+											"pm.globals.unset(\"acabamento2\")"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{host}}/api/Acabamento/{{acabamento2id}}",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"Acabamento",
+										"{{acabamento2id}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Produto",
+					"item": [
+						{
+							"name": "Categoria",
+							"item": [
+								{
+									"name": "Get Categoria Fail",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "a200e076-0c47-4116-be0e-1096928d8b21",
+												"exec": [
+													"pm.test(\"Status code is 404\", function () {",
+													"    pm.response.to.have.status(404);",
+													"});",
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "d4d610db-9440-4815-bcad-3b77d1c08d84",
+												"exec": [
+													"var nomeCategoria = \"SUPERXPTO\"",
+													"pm.globals.set(\"supercategoria\",nomeCategoria);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{host}}/api/Categoria/?nome={{supercategoria}}",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"Categoria",
+												""
+											],
+											"query": [
+												{
+													"key": "nome",
+													"value": "{{supercategoria}}"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create Categoria",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "a4b41abe-f963-4e85-8791-a0fde8741b19",
+												"exec": [
+													"var catID;",
+													"",
+													"pm.test(\"Successful POST request\", function () {",
+													"    var jsonData = pm.response.json();",
+													"    catID = jsonData.id;",
+													"    pm.globals.set(\"supercategoriaid\", catID);",
+													"    pm.expect(pm.response.code).to.be.oneOf([201,202]);",
+													"});",
+													"",
+													"pm.test(\"Status code name has string\", function () {",
+													"    pm.response.to.have.status(\"Created\");",
+													"});",
+													"",
+													"pm.test(\"Body matches string\", function () {",
+													"    var nomeCategoria = pm.globals.get(\"supercategoria\")",
+													"    pm.expect(pm.response.text()).to.include(nomeCategoria);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\tNome: \"{{supercategoria}}\"\n}"
+										},
+										"url": {
+											"raw": "{{host}}/api/Categoria",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"Categoria"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get SubCategoria Fail",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "b5be7bae-ea7e-4d8c-9398-d56d26786a94",
+												"exec": [
+													"var nomeCategoria = \"SUBCATEGORIAXPTO\"",
+													"pm.globals.set(\"subcategoria\",nomeCategoria);"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"id": "96ae8e6d-77d8-43f7-9f5a-d1ef04bd8f03",
+												"exec": [
+													"pm.test(\"Status code is 404\", function () {",
+													"    pm.response.to.have.status(404);",
+													"});",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{host}}/api/Categoria/?nome={{subcategoria}}",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"Categoria",
+												""
+											],
+											"query": [
+												{
+													"key": "nome",
+													"value": "{{subcategoria}}"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create Subcategoria",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "66ce31c5-f888-45ca-9558-19b15261f60f",
+												"exec": [
+													"var subcatID;",
+													"",
+													"pm.test(\"Successful POST request\", function () {",
+													"    var jsonData = pm.response.json();",
+													"    subcatID = jsonData.id;",
+													"    pm.globals.set(\"subcatid\", subcatID);",
+													"    ",
+													"    pm.expect(pm.response.code).to.be.oneOf([201,202]);",
+													"});",
+													"",
+													"pm.test(\"Status code name has string\", function () {",
+													"    pm.response.to.have.status(\"Created\");",
+													"});",
+													"",
+													"pm.test(\"Body matches string\", function () {",
+													"    var nomeCategoria = pm.globals.get(\"subcategoria\")",
+													"    pm.expect(pm.response.text()).to.include(nomeCategoria);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\tNome: \"{{subcategoria}}\",\n\tSuperCategoria: {{supercategoriaid}}\n}"
+										},
+										"url": {
+											"raw": "{{host}}/api/Categoria",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"Categoria"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get Categoria",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "a200e076-0c47-4116-be0e-1096928d8b21",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"",
+													"pm.test(\"Body matches string\", function () {",
+													"    var nomeCategoria = pm.globals.get(\"subcategoria\")",
+													"    pm.expect(pm.response.text()).to.include(nomeCategoria);",
+													"});",
+													"",
+													"pm.test(\"Content-Type is present\", function () {",
+													"    pm.response.to.have.header(\"Content-Type\");",
+													"});",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{host}}/api/Categoria/{{subcatid}}",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"Categoria",
+												"{{subcatid}}"
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "MaterialAcabamento",
+							"item": [
+								{
+									"name": "Get Material Random1 Fail",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "4e881441-e045-454a-bca2-7606feac5997",
+												"exec": [
+													"var nomeMaterial = \"Random1\"",
+													"pm.globals.set(\"material1\",nomeMaterial);"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"id": "14e9be51-9fbc-49f4-85e3-0ad96ca3200a",
+												"exec": [
+													"pm.test(\"Status code is 404\", function () {",
+													"    pm.response.to.have.status(404);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{host}}/api/Material/?nome={{material1}}",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"Material",
+												""
+											],
+											"query": [
+												{
+													"key": "nome",
+													"value": "{{material1}}"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create Material Random1",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "869957e2-b381-4809-91c0-43b96cd56fea",
+												"exec": [
+													"var materialid;",
+													"",
+													"pm.test(\"Successful POST request\", function () {",
+													"    var jsonData = pm.response.json();",
+													"    materialid = jsonData.id;",
+													"    pm.globals.set(\"material1id\", materialid);",
+													"    pm.expect(pm.response.code).to.be.oneOf([201,202]);",
+													"});",
+													"pm.test(\"Body matches string\", function () {",
+													"    var nomeMaterial = pm.globals.get(\"material1\")",
+													"    pm.expect(pm.response.text()).to.include(nomeMaterial);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"nome\" : \"{{material1}}\"\n}"
+										},
+										"url": {
+											"raw": "{{host}}/api/Material",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"Material"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create Material Random1 Fail",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "869957e2-b381-4809-91c0-43b96cd56fea",
+												"exec": [
+													"pm.test(\"BAD POST request\", function () {",
+													"    pm.expect(pm.response.code).to.be.oneOf([400]);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"nome\" : \"{{material1}}\"\n}"
+										},
+										"url": {
+											"raw": "{{host}}/api/Material",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"Material"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Put Material1",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "869957e2-b381-4809-91c0-43b96cd56fea",
+												"exec": [
+													"pm.test(\"Successful put request\", function () {",
+													"    pm.expect(pm.response.code).to.be.oneOf([200]);",
+													"});",
+													"",
+													"pm.test(\"Body matches string\", function () {",
+													"    var nomeMaterial = pm.globals.get(\"material1\")",
+													"    pm.expect(pm.response.text()).to.include(nomeMaterial);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "7b3a7b98-0209-43a7-916c-34e4ebdebda3",
+												"exec": [
+													"var nomeMaterial = pm.globals.get(\"material1\");",
+													"var nomeMaterial = nomeMaterial+ \"X\";",
+													"pm.globals.set(\"material1\",nomeMaterial);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"nome\" : \"{{material1}}\"\n}"
+										},
+										"url": {
+											"raw": "{{host}}/api/Material/{{material1id}}",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"Material",
+												"{{material1id}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get Material Random1 Success",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "4e881441-e045-454a-bca2-7606feac5997",
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"id": "14e9be51-9fbc-49f4-85e3-0ad96ca3200a",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"",
+													"pm.test(\"Body matches string\", function () {",
+													"    var material = pm.globals.get(\"material1\")",
+													"    pm.expect(pm.response.text()).to.include(material);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{host}}/api/Material/{{material1id}}",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"Material",
+												"{{material1id}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get Material Random2 Fail",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "4e881441-e045-454a-bca2-7606feac5997",
+												"exec": [
+													"var nomeMaterial = \"Random2\"",
+													"pm.globals.set(\"material2\",nomeMaterial);"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"id": "14e9be51-9fbc-49f4-85e3-0ad96ca3200a",
+												"exec": [
+													"pm.test(\"Status code is 404\", function () {",
+													"    pm.response.to.have.status(404);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{host}}/api/Material/?nome={{material2}}",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"Material",
+												""
+											],
+											"query": [
+												{
+													"key": "nome",
+													"value": "{{material2}}"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create Material Random2",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "869957e2-b381-4809-91c0-43b96cd56fea",
+												"exec": [
+													"var materialid;",
+													"",
+													"pm.test(\"Successful POST request\", function () {",
+													"    var jsonData = pm.response.json();",
+													"    materialid = jsonData.id;",
+													"    pm.globals.set(\"material2id\", materialid);",
+													"    pm.expect(pm.response.code).to.be.oneOf([201,202]);",
+													"});",
+													"pm.test(\"Body matches string\", function () {",
+													"    var nomeMaterial = pm.globals.get(\"material2\")",
+													"    pm.expect(pm.response.text()).to.include(nomeMaterial);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"nome\" : \"{{material2}}\"\n}"
+										},
+										"url": {
+											"raw": "{{host}}/api/Material",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"Material"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create Material Random2 Fail",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "869957e2-b381-4809-91c0-43b96cd56fea",
+												"exec": [
+													"pm.test(\"BAD POST request\", function () {",
+													"    pm.expect(pm.response.code).to.be.oneOf([400]);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"nome\" : \"{{material2}}\"\n}"
+										},
+										"url": {
+											"raw": "{{host}}/api/Material",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"Material"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Put Material2",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "869957e2-b381-4809-91c0-43b96cd56fea",
+												"exec": [
+													"pm.test(\"Successful put request\", function () {",
+													"    pm.expect(pm.response.code).to.be.oneOf([200]);",
+													"});",
+													"",
+													"pm.test(\"Body matches string\", function () {",
+													"    var nomeMaterial = pm.globals.get(\"material2\")",
+													"    pm.expect(pm.response.text()).to.include(nomeMaterial);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "7b3a7b98-0209-43a7-916c-34e4ebdebda3",
+												"exec": [
+													"var nomeMaterial = pm.globals.get(\"material2\");",
+													"var nomeMaterial = nomeMaterial+ \"Y\";",
+													"pm.globals.set(\"material2\",nomeMaterial);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"nome\" : \"{{material2}}\"\n}"
+										},
+										"url": {
+											"raw": "{{host}}/api/Material/{{material2id}}",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"Material",
+												"{{material2id}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get Material Random2 Success",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "4e881441-e045-454a-bca2-7606feac5997",
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"id": "14e9be51-9fbc-49f4-85e3-0ad96ca3200a",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"",
+													"pm.test(\"Body matches string\", function () {",
+													"    var material = pm.globals.get(\"material2\")",
+													"    pm.expect(pm.response.text()).to.include(material);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{host}}/api/Material/{{material2id}}",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"Material",
+												"{{material2id}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get Acabamento1 Fail",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "7a25c489-2dd0-4c99-8e99-38962ae6ca78",
+												"exec": [
+													"var nomeAcabamento = \"AcabamentoRandom1\"",
+													"pm.globals.set(\"acabamento1\",nomeAcabamento);"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"id": "163fb105-d8c9-4d05-b983-a24a66fdebaa",
+												"exec": [
+													"pm.test(\"Status code is 404\", function () {",
+													"    pm.response.to.have.status(404);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{host}}/api/Acabamento/?nome={{acabamento1}}",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"Acabamento",
+												""
+											],
+											"query": [
+												{
+													"key": "nome",
+													"value": "{{acabamento1}}"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Post Acabamento1",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "d38062e9-8ee9-4924-b455-32379d0aa534",
+												"exec": [
+													"var acabamento1id;",
+													"",
+													"pm.test(\"Successful POST request\", function () {",
+													"    var jsonData = pm.response.json();",
+													"    acabamento1id = jsonData.id;",
+													"    pm.globals.set(\"acabamento1id\", acabamento1id);",
+													"    pm.expect(pm.response.code).to.be.oneOf([201,202]);",
+													"});",
+													"pm.test(\"Body matches string\", function () {",
+													"    var nomeAcabamento = pm.globals.get(\"acabamento1\")",
+													"    pm.expect(pm.response.text()).to.include(nomeAcabamento);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"Nome\" : \"{{acabamento1}}\"\n}"
+										},
+										"url": {
+											"raw": "{{host}}/api/Acabamento/",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"Acabamento",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Post Acabamento1 Fail",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "d38062e9-8ee9-4924-b455-32379d0aa534",
+												"exec": [
+													"pm.test(\"BAD POST request\", function () {",
+													"    pm.expect(pm.response.code).to.be.oneOf([400]);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"Nome\" : \"{{acabamento1}}\"\n}"
+										},
+										"url": {
+											"raw": "{{host}}/api/Acabamento/",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"Acabamento",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Put Acabamento1",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "42c9d580-bec4-4034-9fab-1c1ede4107d8",
+												"exec": [
+													"var nome = pm.globals.get(\"acabamento1\");",
+													"var nome = nome+ \"A\";",
+													"pm.globals.set(\"acabamento1\",nome);"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"id": "292a17e0-9bb1-46ae-b40f-334b19e3a30a",
+												"exec": [
+													"pm.test(\"Successful put request\", function () {",
+													"    pm.expect(pm.response.code).to.be.oneOf([200]);",
+													"});",
+													"",
+													"pm.test(\"Body matches string\", function () {",
+													"    var nomeAcabamento = pm.globals.get(\"acabamento1\")",
+													"    pm.expect(pm.response.text()).to.include(nomeAcabamento);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"Nome\" : \"{{acabamento1}}\"\n}"
+										},
+										"url": {
+											"raw": "{{host}}/api/Acabamento/{{acabamento1id}}",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"Acabamento",
+												"{{acabamento1id}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get Acabamento1 Success",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "7a25c489-2dd0-4c99-8e99-38962ae6ca78",
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"id": "163fb105-d8c9-4d05-b983-a24a66fdebaa",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"pm.test(\"Body matches string\", function () {",
+													"    var nomeAcabamento = pm.globals.get(\"acabamento1\")",
+													"    pm.expect(pm.response.text()).to.include(nomeAcabamento);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{host}}/api/Acabamento/?nome={{acabamento1}}",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"Acabamento",
+												""
+											],
+											"query": [
+												{
+													"key": "nome",
+													"value": "{{acabamento1}}"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get Acabamento2 Fail",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "7a25c489-2dd0-4c99-8e99-38962ae6ca78",
+												"exec": [
+													"var nome = \"AcabamentoRandom2\"",
+													"pm.globals.set(\"acabamento2\",nome);"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"id": "163fb105-d8c9-4d05-b983-a24a66fdebaa",
+												"exec": [
+													"pm.test(\"Status code is 404\", function () {",
+													"    pm.response.to.have.status(404);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{host}}/api/Acabamento/?nome={{acabamento2}}",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"Acabamento",
+												""
+											],
+											"query": [
+												{
+													"key": "nome",
+													"value": "{{acabamento2}}"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Post Acabamento2",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "d38062e9-8ee9-4924-b455-32379d0aa534",
+												"exec": [
+													"var id;",
+													"",
+													"pm.test(\"Successful POST request\", function () {",
+													"    var jsonData = pm.response.json();",
+													"    id = jsonData.id;",
+													"    pm.globals.set(\"acabamento2id\", id);",
+													"    pm.expect(pm.response.code).to.be.oneOf([201,202]);",
+													"});",
+													"pm.test(\"Body matches string\", function () {",
+													"    var nomeAcabamento = pm.globals.get(\"acabamento2\")",
+													"    pm.expect(pm.response.text()).to.include(nomeAcabamento);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"Nome\" : \"{{acabamento2}}\"\n}"
+										},
+										"url": {
+											"raw": "{{host}}/api/Acabamento/",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"Acabamento",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Post Acabamento2 Fail",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "d38062e9-8ee9-4924-b455-32379d0aa534",
+												"exec": [
+													"pm.test(\"BAD POST request\", function () {",
+													"    pm.expect(pm.response.code).to.be.oneOf([400]);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"Nome\" : \"{{acabamento2}}\"\n}"
+										},
+										"url": {
+											"raw": "{{host}}/api/Acabamento/",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"Acabamento",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Put Acabamento2",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "42c9d580-bec4-4034-9fab-1c1ede4107d8",
+												"exec": [
+													"var nome = pm.globals.get(\"acabamento2\");",
+													"var nome = nome+ \"A\";",
+													"pm.globals.set(\"acabamento2\",nome);"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"id": "292a17e0-9bb1-46ae-b40f-334b19e3a30a",
+												"exec": [
+													"pm.test(\"Successful put request\", function () {",
+													"    pm.expect(pm.response.code).to.be.oneOf([200]);",
+													"});",
+													"",
+													"pm.test(\"Body matches string\", function () {",
+													"    var nomeAcabamento = pm.globals.get(\"acabamento2\")",
+													"    pm.expect(pm.response.text()).to.include(nomeAcabamento);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"Nome\" : \"{{acabamento2}}\"\n}"
+										},
+										"url": {
+											"raw": "{{host}}/api/Acabamento/{{acabamento2id}}",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"Acabamento",
+												"{{acabamento2id}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Post MaterialAcabamento1",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "9e09f444-ff79-44b5-82cc-05c3718ae50f",
+												"exec": [
+													"var id;",
+													"",
+													"pm.test(\"Successful POST request\", function () {",
+													"    var jsonData = pm.response.json();",
+													"    id = jsonData.id;",
+													"    pm.globals.set(\"matacabid1\", id);",
+													"    pm.expect(pm.response.code).to.be.oneOf([201,202]);",
+													"",
+													"});",
+													"pm.test(\"Body matches string\", function () {",
+													"    var nomeMaterial    = pm.globals.get(\"material1\");",
+													"    var nomeAcabamento  = pm.globals.get(\"acabamento1\");",
+													"    pm.expect(pm.response.text()).to.include(nomeAcabamento);",
+													"    pm.expect(pm.response.text()).to.include(nomeMaterial);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"Material\" : {\n\t\t\"id\" : {{material1id}}\n\t\t},\n\t\"Acabamento\" : {\n\t\t\"id\" : {{acabamento1id}}\n\t}\n}"
+										},
+										"url": {
+											"raw": "{{host}}/api/MaterialAcabamento/",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"MaterialAcabamento",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Post MaterialAcabamento1 Fail",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "d38062e9-8ee9-4924-b455-32379d0aa534",
+												"exec": [
+													"pm.test(\"BAD POST request\", function () {",
+													"    pm.expect(pm.response.code).to.be.oneOf([400]);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"Material\" : {\n\t\t\"id\" : {{material1id}}\n\t\t},\n\t\"Acabamento\" : {\n\t\t\"id\" : {{acabamento1id}}\n\t}\n}"
+										},
+										"url": {
+											"raw": "{{host}}/api/MaterialAcabamento/",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"MaterialAcabamento",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get MaterialAcabamento1 Success",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "7a25c489-2dd0-4c99-8e99-38962ae6ca78",
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"id": "163fb105-d8c9-4d05-b983-a24a66fdebaa",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"pm.test(\"Body matches string\", function () {",
+													"    var nomeMaterial    = pm.globals.get(\"material1\");",
+													"    var nomeAcabamento  = pm.globals.get(\"acabamento1\");",
+													"    pm.expect(pm.response.text()).to.include(nomeAcabamento);",
+													"    pm.expect(pm.response.text()).to.include(nomeMaterial);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{host}}/api/MaterialAcabamento/{{matacabid1}}",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"MaterialAcabamento",
+												"{{matacabid1}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Post MaterialAcabamento2",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "9e09f444-ff79-44b5-82cc-05c3718ae50f",
+												"exec": [
+													"var id;",
+													"",
+													"pm.test(\"Successful POST request\", function () {",
+													"    var jsonData = pm.response.json();",
+													"    id = jsonData.id;",
+													"    pm.globals.set(\"matacabid2\", id);",
+													"    pm.expect(pm.response.code).to.be.oneOf([201,202]);",
+													"",
+													"});",
+													"pm.test(\"Body matches string\", function () {",
+													"    var nomeMaterial    = pm.globals.get(\"material1\");",
+													"    var nomeAcabamento  = pm.globals.get(\"acabamento2\");",
+													"    pm.expect(pm.response.text()).to.include(nomeAcabamento);",
+													"    pm.expect(pm.response.text()).to.include(nomeMaterial);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"Material\" : {\n\t\t\"id\" : {{material1id}}\n\t\t},\n\t\"Acabamento\" : {\n\t\t\"id\" : {{acabamento2id}}\n\t}\n}"
+										},
+										"url": {
+											"raw": "{{host}}/api/MaterialAcabamento/",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"MaterialAcabamento",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Post MaterialAcabamento2 Fail",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "d38062e9-8ee9-4924-b455-32379d0aa534",
+												"exec": [
+													"pm.test(\"BAD POST request\", function () {",
+													"    pm.expect(pm.response.code).to.be.oneOf([400]);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"Material\" : {\n\t\t\"id\" : {{material1id}}\n\t\t},\n\t\"Acabamento\" : {\n\t\t\"id\" : {{acabamento2id}}\n\t}\n}"
+										},
+										"url": {
+											"raw": "{{host}}/api/MaterialAcabamento/",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"MaterialAcabamento",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get MaterialAcabamento2 Success",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "7a25c489-2dd0-4c99-8e99-38962ae6ca78",
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"id": "163fb105-d8c9-4d05-b983-a24a66fdebaa",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"pm.test(\"Body matches string\", function () {",
+													"    var nomeMaterial    = pm.globals.get(\"material1\");",
+													"    var nomeAcabamento  = pm.globals.get(\"acabamento2\");",
+													"    pm.expect(pm.response.text()).to.include(nomeAcabamento);",
+													"    pm.expect(pm.response.text()).to.include(nomeMaterial);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{host}}/api/MaterialAcabamento/{{matacabid2}}",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"MaterialAcabamento",
+												"{{matacabid2}}"
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "Produto",
+							"item": [
+								{
+									"name": "get produto teste",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "2b4765c2-ec82-438b-8f40-e3e16f2c66ae",
+												"exec": [
+													"pm.test(\"Status code is 404\", function () {",
+													"    pm.response.to.have.status(404);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "952f7286-d3a5-49f3-bc73-d6264186ab37",
+												"exec": [
+													"pm.globals.set(\"produto_teste\",\"ArmarioTeste123\")"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{host}}/api/Produto/?nome={{produto_teste}}",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"Produto",
+												""
+											],
+											"query": [
+												{
+													"key": "nome",
+													"value": "{{produto_teste}}"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "criar armariotesteocupacao",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "f892d648-1c53-44fa-94d8-967d6a982bc5",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    var jsonData = pm.response.json();",
+													"    pm.globals.set(\"id_armario_teste\", jsonData.id);",
+													"    pm.expect(pm.response.code).to.be.oneOf([200,201,202]);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n        \"nome\": \"{{produto_teste}}\",\n        \"Categoria\": {\n            \"id\": {{subcatid}}\n        },\n        \"Dimensao\": {\n            \"tipoComprimento\": \"discreto\",\n            \"tipoLargura\": \"continuo\",\n            \"tipoAltura\": \"discreto\",\n            \"comprimento\": [\n                20,\n                30,\n                40\n            ],\n            \"largura\": [\n                10,\n                40\n            ],\n            \"altura\": [\n                100,\n                200\n            ]\n        },\n        \"MaterialAcabamento\": [\n            {\n                \"id\": {{matacabid1}}\n            }\n        ]\n    }"
+										},
+										"url": {
+											"raw": "{{host}}/api/Produto/",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"Produto",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "get armariotesteocupacao",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "f4243dea-5eda-418c-8582-f14b22afd811",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{host}}/api/Produto/?nome={{produto_teste}}",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"Produto",
+												""
+											],
+											"query": [
+												{
+													"key": "nome",
+													"value": "{{produto_teste}}"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "get gavetaocupacao",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "bee35477-4f74-44fd-b6f7-99d4cef7f55d",
+												"exec": [
+													"pm.test(\"Status code is 404\", function () {",
+													"    pm.response.to.have.status(404);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "326c7807-8a84-481f-9c74-2c6958231747",
+												"exec": [
+													"pm.globals.set(\"gaveta_teste\",\"GavetaTeste123\")"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{host}}/api/Produto/?nome={{gaveta_teste}}",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"Produto",
+												""
+											],
+											"query": [
+												{
+													"key": "nome",
+													"value": "{{gaveta_teste}}"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "criar gavetaocupacao",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "f892d648-1c53-44fa-94d8-967d6a982bc5",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    var jsonData = pm.response.json();",
+													"    pm.globals.set(\"id_gaveta_teste\", jsonData.id);",
+													"    pm.expect(pm.response.code).to.be.oneOf([200,201,202]);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": " {\n        \"nome\": \"{{gaveta_teste}}\",\n        \"Categoria\": {\n            \"id\": {{subcatid}}\n        },\n        \"Dimensao\": {\n            \"tipoComprimento\": \"discreto\",\n            \"tipoLargura\": \"discreto\",\n            \"tipoAltura\": \"discreto\",\n            \"comprimento\": [\n                40\n            ],\n            \"largura\": [\n                5\n            ],\n            \"altura\": [\n                10,\n                20\n            ]\n        },\n        \"MaterialAcabamento\": [\n            {\n                \"id\" : {{matacabid2}}\n            }\n        ],\n        \"partes\": []\n    }"
+										},
+										"url": {
+											"raw": "{{host}}/api/Produto/",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"Produto",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "get gavetaocupacao",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "f4243dea-5eda-418c-8582-f14b22afd811",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{host}}/api/Produto/?nome={{gaveta_teste}}",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"Produto",
+												""
+											],
+											"query": [
+												{
+													"key": "nome",
+													"value": "{{gaveta_teste}}"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "criar agregacao",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "7f484e38-03b8-4804-a556-1553407267fb",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    var jsonData = pm.response.json();",
+													"    pm.globals.set(\"id_agregacao\", jsonData.id);",
+													"    pm.expect(pm.response.code).to.be.oneOf([200,201,202]);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"Base\" : {{id_armario_teste}},\n\t\"Parte\": {{id_gaveta_teste}}\n}"
+										},
+										"url": {
+											"raw": "{{host}}/api/Agregacao",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"Agregacao"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "get agregacao",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "f4243dea-5eda-418c-8582-f14b22afd811",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{host}}/api/Agregacao/?nome={{id_agregacao}}",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"Agregacao",
+												""
+											],
+											"query": [
+												{
+													"key": "nome",
+													"value": "{{id_agregacao}}"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "put restricaoocupacao FAIL",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "f421e745-9f6b-47b4-a504-5e62fc93cf51",
+												"exec": [
+													"pm.test(\"BAD POST request\", function () {",
+													"    pm.expect(pm.response.code).to.be.oneOf([400]);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"Restricao\" : 5,\n\t\"Ocupacao\" : {\n\t\t\"LarguraMin\" : 0.0,\n\t\t\"LarguraMax\" : 0.5,\n\t\t\"AlturaMin\"  : 0.0,\n\t\t\"AlturaMax\"  : 1.0,\n\t\t\"ComprimentoMin\" : 0.1,\n\t\t\"ComprimentoMax\" : 0.7\n\t}\n\t\n}"
+										},
+										"url": {
+											"raw": "{{host}}/api/Agregacao/{{id_agregacao}}/Restricao",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"Agregacao",
+												"{{id_agregacao}}",
+												"Restricao"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "put restricaoocupacao PASS",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "f421e745-9f6b-47b4-a504-5e62fc93cf51",
+												"exec": [
+													"pm.test(\"Created request\", function () {",
+													"    pm.expect(pm.response.code).to.be.oneOf([200]);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"Restricao\" : 5,\n\t\"Ocupacao\" : {\n\t\t\"LarguraMin\" : 0.0,\n\t\t\"LarguraMax\" : 0.5,\n\t\t\"AlturaMin\"  : 0.0,\n\t\t\"AlturaMax\"  : 1.0,\n\t\t\"ComprimentoMin\" : 0.1,\n\t\t\"ComprimentoMax\" : 1.0\n\t}\n\t\n}"
+										},
+										"url": {
+											"raw": "{{host}}/api/Agregacao/{{id_agregacao}}/Restricao",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"Agregacao",
+												"{{id_agregacao}}",
+												"Restricao"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "put restricao obrigatorio",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "f421e745-9f6b-47b4-a504-5e62fc93cf51",
+												"exec": [
+													"pm.test(\"Created request\", function () {",
+													"    pm.expect(pm.response.code).to.be.oneOf([200]);",
+													"});",
+													"",
+													"pm.test(\"Body matches string\", function () {",
+													"    pm.expect(pm.response.text()).to.include(\"Restricao Obrigatoria\");",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"Restricao\" : 3\n}"
+										},
+										"url": {
+											"raw": "{{host}}/api/Agregacao/{{id_agregacao}}/Restricao",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"Agregacao",
+												"{{id_agregacao}}",
+												"Restricao"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "put restricao material fail",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "298935da-1a3a-4084-9a4d-f22fc8ef58e3",
+												"exec": [
+													"pm.test(\"Fail request\", function () {",
+													"    pm.expect(pm.response.code).to.be.oneOf([400]);",
+													"});",
+													"",
+													"/*pm.test(\"Body matches string\", function () {",
+													"    pm.expect(pm.response.text()).to.include(\"Restricao Material\");",
+													"});",
+													"*/"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"Restricao\" : 2\n}"
+										},
+										"url": {
+											"raw": "{{host}}/api/Agregacao/{{id_agregacao}}/Restricao",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"Agregacao",
+												"{{id_agregacao}}",
+												"Restricao"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Adicionar MaterialAcabamento a Produto",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "2dca42bc-fa03-4362-a6e8-11c309b71bae",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{host}}/api/Produto/{{id_armario_teste}}/MaterialAcabamento/{{matacabid2}}",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"Produto",
+												"{{id_armario_teste}}",
+												"MaterialAcabamento",
+												"{{matacabid2}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "put restricao material Success",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "298935da-1a3a-4084-9a4d-f22fc8ef58e3",
+												"exec": [
+													"pm.test(\"Created request\", function () {",
+													"    pm.expect(pm.response.code).to.be.oneOf([200]);",
+													"});",
+													"",
+													"pm.test(\"Body matches string\", function () {",
+													"    pm.expect(pm.response.text()).to.include(\"Restricao Material\");",
+													"});",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"Restricao\" : 2\n}"
+										},
+										"url": {
+											"raw": "{{host}}/api/Agregacao/{{id_agregacao}}/Restricao",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"Agregacao",
+												"{{id_agregacao}}",
+												"Restricao"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "confirmar restricao ocupacao",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{host}}/api/Produto/{{id_armario_teste}}/Restricoes",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"Produto",
+												"{{id_armario_teste}}",
+												"Restricoes"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delete agregacao",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "a7aa6291-0df3-4ce5-a9d3-9cf00a4f79f4",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{host}}/api/Agregacao/{{id_agregacao}}",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"Agregacao",
+												"{{id_agregacao}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delete armariotesteocupacao",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "a7aa6291-0df3-4ce5-a9d3-9cf00a4f79f4",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{host}}/api/Produto/{{id_armario_teste}}",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"Produto",
+												"{{id_armario_teste}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delete gavetaocupacao",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "a7aa6291-0df3-4ce5-a9d3-9cf00a4f79f4",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{host}}/api/Produto/{{id_gaveta_teste}}",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"Produto",
+												"{{id_gaveta_teste}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "get produto is deleted",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "2b4765c2-ec82-438b-8f40-e3e16f2c66ae",
+												"exec": [
+													"pm.test(\"Status code is 404\", function () {",
+													"    pm.response.to.have.status(404);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{host}}/api/Produto/?nome={{produto_teste}}",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"Produto",
+												""
+											],
+											"query": [
+												{
+													"key": "nome",
+													"value": "{{produto_teste}}"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "get gaveta is deleted",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "2b4765c2-ec82-438b-8f40-e3e16f2c66ae",
+												"exec": [
+													"pm.test(\"Status code is 404\", function () {",
+													"    pm.response.to.have.status(404);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{host}}/api/Produto/?nome={{gaveta_teste}}",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"Produto",
+												""
+											],
+											"query": [
+												{
+													"key": "nome",
+													"value": "{{gaveta_teste}}"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "Delete",
+							"item": [
+								{
+									"name": "Delete MaterialAcabamento1",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "ca7da35f-0908-41e9-9e16-ea1ba174d778",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{host}}/api/MaterialAcabamento/{{matacabid1}}",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"MaterialAcabamento",
+												"{{matacabid1}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Delete MaterialAcabamento2",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "ca7da35f-0908-41e9-9e16-ea1ba174d778",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{host}}/api/MaterialAcabamento/{{matacabid2}}",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"MaterialAcabamento",
+												"{{matacabid2}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Delete Material Random1",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "ca7da35f-0908-41e9-9e16-ea1ba174d778",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{host}}/api/Material/{{material1id}}",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"Material",
+												"{{material1id}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Delete Material Random2",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "ca7da35f-0908-41e9-9e16-ea1ba174d778",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{host}}/api/Material/{{material2id}}",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"Material",
+												"{{material2id}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Delete Acabamento2",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "ca7da35f-0908-41e9-9e16-ea1ba174d778",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{host}}/api/Acabamento/{{acabamento2id}}",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"Acabamento",
+												"{{acabamento2id}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Delete Acabamento1",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "ca7da35f-0908-41e9-9e16-ea1ba174d778",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{host}}/api/Acabamento/{{acabamento1id}}",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"Acabamento",
+												"{{acabamento1id}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Delete Subcategoria",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "eb8f6b5d-3cea-4e07-a497-53a72092ad24",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{host}}/api/Categoria/{{subcatid}}",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"Categoria",
+												"{{subcatid}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Delete Categoria",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "b01e656d-297f-4e62-831e-4837aadcbfe8",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "27f7765a-ffd2-47c1-b666-397dc20b9067",
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{host}}/api/Categoria/{{supercategoriaid}}",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"Categoria",
+												"{{supercategoriaid}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get Categoria Fail",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "a200e076-0c47-4116-be0e-1096928d8b21",
+												"exec": [
+													"pm.test(\"Status code is 404\", function () {",
+													"    pm.response.to.have.status(404);",
+													"",
+													"});",
+													"pm.globals.unset(\"supercategoria\")",
+													"pm.globals.unset(\"supercategoriaid\")"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "d4d610db-9440-4815-bcad-3b77d1c08d84",
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{host}}/api/Categoria/?nome={{supercategoriaid}}",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"Categoria",
+												""
+											],
+											"query": [
+												{
+													"key": "nome",
+													"value": "{{supercategoriaid}}"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get SubCategoria Fail",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "a200e076-0c47-4116-be0e-1096928d8b21",
+												"exec": [
+													"pm.test(\"Status code is 404\", function () {",
+													"    pm.response.to.have.status(404);",
+													"",
+													"});",
+													"pm.globals.unset(\"subcategoria\")",
+													"pm.globals.unset(\"subcatid\")"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "d4d610db-9440-4815-bcad-3b77d1c08d84",
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{host}}/api/Categoria/?nome={{supercategoriaid}}",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"Categoria",
+												""
+											],
+											"query": [
+												{
+													"key": "nome",
+													"value": "{{supercategoriaid}}"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get MaterialAcabamento2 Fail",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "a279cd17-9a59-4bcf-80f4-e27d41e3235e",
+												"exec": [
+													"pm.test(\"Status code is 404\", function () {",
+													"    pm.response.to.have.status(404);",
+													"});",
+													"pm.globals.unset(\"matacabid2\")"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{host}}/api/MaterialAcabamento/{{matacabid2}}",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"MaterialAcabamento",
+												"{{matacabid2}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get MaterialAcabamento1 Fail",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "a279cd17-9a59-4bcf-80f4-e27d41e3235e",
+												"exec": [
+													"pm.test(\"Status code is 404\", function () {",
+													"    pm.response.to.have.status(404);",
+													"});",
+													"pm.globals.unset(\"matacabid1\")"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{host}}/api/MaterialAcabamento/{{matacabid1}}",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"MaterialAcabamento",
+												"{{matacabid1}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get Material1 Fail",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "4e881441-e045-454a-bca2-7606feac5997",
+												"exec": [
+													"var nomeMaterial = \"Random1\"",
+													"pm.globals.set(\"material1\",nomeMaterial);"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"id": "14e9be51-9fbc-49f4-85e3-0ad96ca3200a",
+												"exec": [
+													"pm.test(\"Status code is 404\", function () {",
+													"    pm.response.to.have.status(404);",
+													"});",
+													"",
+													"pm.globals.unset(\"material1id\");",
+													"pm.globals.unset(\"material1\");"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{host}}/api/Material/{{material1id}}",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"Material",
+												"{{material1id}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get Material2 Fail",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "4e881441-e045-454a-bca2-7606feac5997",
+												"exec": [
+													"var nomeMaterial = \"Random1\"",
+													"pm.globals.set(\"material1\",nomeMaterial);"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"id": "14e9be51-9fbc-49f4-85e3-0ad96ca3200a",
+												"exec": [
+													"pm.test(\"Status code is 404\", function () {",
+													"    pm.response.to.have.status(404);",
+													"});",
+													"",
+													"pm.globals.unset(\"material2id\");",
+													"pm.globals.unset(\"material2\");"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{host}}/api/Material/{{material2id}}",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"Material",
+												"{{material2id}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get Acabamento1 Fail",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "4e881441-e045-454a-bca2-7606feac5997",
+												"exec": [
+													"var nomeMaterial = \"Random1\"",
+													"pm.globals.set(\"material1\",nomeMaterial);"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"id": "14e9be51-9fbc-49f4-85e3-0ad96ca3200a",
+												"exec": [
+													"pm.test(\"Status code is 404\", function () {",
+													"    pm.response.to.have.status(404);",
+													"});",
+													"",
+													"pm.globals.unset(\"acabamento1id\")",
+													"pm.globals.unset(\"acabamento1\")"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{host}}/api/Acabamento/{{acabamento1id}}",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"Acabamento",
+												"{{acabamento1id}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get Acabamento2 Fail",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "4e881441-e045-454a-bca2-7606feac5997",
+												"exec": [
+													"var nomeMaterial = \"Random1\"",
+													"pm.globals.set(\"material1\",nomeMaterial);"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"id": "14e9be51-9fbc-49f4-85e3-0ad96ca3200a",
+												"exec": [
+													"pm.test(\"Status code is 404\", function () {",
+													"    pm.response.to.have.status(404);",
+													"});",
+													"",
+													"pm.globals.unset(\"acabamento2id\")",
+													"pm.globals.unset(\"acabamento2\")"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{host}}/api/Acabamento/{{acabamento2id}}",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"Acabamento",
+												"{{acabamento2id}}"
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"_postman_isSubFolder": true
+						}
+					],
+					"_postman_isSubFolder": true
+				}
+			]
+		},
+		{
+			"name": "Encomendas",
+			"item": [
+				{
+					"name": "Get ItemDeProduto",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5f028b37-69ec-47bf-9cb7-685cfeaaa0f1",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:1337/api/ItemDeProduto/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"ItemDeProduto",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post Gaveta",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a5a26f59-1423-4623-b4a8-75361216b170",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"    var jsonData = pm.response.json();",
+									"    pm.globals.set(\"id_gaveta1\", jsonData.id);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"Produto_id\":4,\r\n\"Material\":\"Madeira\",\r\n\"Acabamento\":\"Natural\",\r\n\"Dimensao\" : { \r\n\t\"Comprimento\":20,\r\n\t\"Largura\":5,\r\n\t\"Altura\":20\r\n}}\r\n\r\n"
+						},
+						"url": {
+							"raw": "http://localhost:1337/api/ItemDeProduto/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"ItemDeProduto",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Gaveta",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "97f81bb1-f77e-412f-a62d-a6ecfc8898a5",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:1337/api/ItemDeProduto/{{id_gaveta1}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"ItemDeProduto",
+								"{{id_gaveta1}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post Gaveta2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "467130f8-c1f5-4580-80e4-a946b5c460bf",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"    var jsonData = pm.response.json();",
+									"    pm.globals.set(\"id_gaveta2\", jsonData.id);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"Produto_id\":5,\r\n\"Material\":\"Madeira\",\r\n\"Acabamento\":\"Natural\",\r\n\"Dimensao\" : { \r\n\t\"Comprimento\":20,\r\n\t\"Largura\":10,\r\n\t\"Altura\":20\r\n}}\r\n\r\n"
+						},
+						"url": {
+							"raw": "http://localhost:1337/api/ItemDeProduto/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"ItemDeProduto",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Gaveta2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "97f81bb1-f77e-412f-a62d-a6ecfc8898a5",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:1337/api/ItemDeProduto/{{id_gaveta2}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"ItemDeProduto",
+								"{{id_gaveta2}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post Modulo Gavetas",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a1f8a539-d5c0-49f0-b6c1-bbf6d6341859",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"    var jsonData = pm.response.json();",
+									"    pm.globals.set(\"id_modulo_gavetas\", jsonData.id);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"Produto_id\":3,\r\n\"Material\":\"Madeira\",\r\n\"Acabamento\":\"Natural\",\r\n\"Dimensao\" : { \r\n\t\"Comprimento\":25,\r\n\t\"Largura\":15,\r\n\t\"Altura\":40\r\n},\r\n\"Partes\" : [{{id_gaveta1}},{{id_gaveta2}}]\r\n}\r\n\r\n"
+						},
+						"url": {
+							"raw": "http://localhost:1337/api/ItemDeProduto/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"ItemDeProduto",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Modulo Gavetas",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "97f81bb1-f77e-412f-a62d-a6ecfc8898a5",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:1337/api/ItemDeProduto/{{id_modulo_gavetas}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"ItemDeProduto",
+								"{{id_modulo_gavetas}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post Porta",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "823d8fef-d7b1-474f-b70e-b3e15f60bd04",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"    var jsonData = pm.response.json();",
+									"    pm.globals.set(\"id_porta_1\", jsonData.id);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"Produto_id\":2,\r\n\"Material\":\"Madeira\",\r\n\"Acabamento\":\"Natural\",\r\n\"Dimensao\" : { \r\n\t\"Comprimento\":40,\r\n\t\"Largura\":15,\r\n\t\"Altura\":100\r\n}}\r\n\r\n"
+						},
+						"url": {
+							"raw": "http://localhost:1337/api/ItemDeProduto/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"ItemDeProduto",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Porta",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "97f81bb1-f77e-412f-a62d-a6ecfc8898a5",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:1337/api/ItemDeProduto/{{id_porta_1}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"ItemDeProduto",
+								"{{id_porta_1}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post Espelho",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "df213a95-3930-41cb-a781-71c37c9c08cc",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"    var jsonData = pm.response.json();",
+									"    pm.globals.set(\"id_espelho\", jsonData.id);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"Produto_id\":8,\r\n\"Material\":\"Aluminio\",\r\n\"Acabamento\":\"Anodizado\",\r\n\"Dimensao\" : { \r\n\t\"Comprimento\":13,\r\n\t\"Largura\":8,\r\n\t\"Altura\":45\r\n}}\r\n\r\n"
+						},
+						"url": {
+							"raw": "http://localhost:1337/api/ItemDeProduto/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"ItemDeProduto",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Espelho",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "99fd2e3b-ca66-4078-8f4e-fd67204f0bf3",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:1337/api/ItemDeProduto/{{id_espelho}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"ItemDeProduto",
+								"{{id_espelho}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post Armario",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "156d7318-9a9c-48ec-859f-a6a17350e3f6",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"    var jsonData = pm.response.json();",
+									"    pm.globals.set(\"id_armario1\", jsonData.id);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"Produto_id\":1,\r\n\"Material\":\"Madeira\",\r\n\"Acabamento\":\"Natural\",\r\n\"Dimensao\" : { \r\n\t\"Comprimento\":40,\r\n\t\"Largura\":15,\r\n\t\"Altura\":100\r\n},\r\n\"Partes\" : [{{id_porta_1}},{{id_modulo_gavetas}},{{id_espelho}}]\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:1337/api/ItemDeProduto/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"ItemDeProduto",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Armario",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "97f81bb1-f77e-412f-a62d-a6ecfc8898a5",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:1337/api/ItemDeProduto/{{id_armario1}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"ItemDeProduto",
+								"{{id_armario1}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put Modulo Gaveta Dimensao Invalido",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0055a249-a478-4a50-9d12-8cd829b2157c",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": {{id_modulo_gavetas}},\n    \"Produto_id\": 3,\n    \"Material\": \"Madeira\",\n    \"Acabamento\": \"Natural\",\n    \"Dimensao\": {\n        \"Altura\": 101,\n        \"Largura\": 15,\n        \"Comprimento\": 25\n    },\n    \"Partes\": []\n}"
+						},
+						"url": {
+							"raw": "http://localhost:1337/api/ItemDeProduto/{{id_modulo_gavetas}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"ItemDeProduto",
+								"{{id_modulo_gavetas}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put Gavetas 2 Dimensao Invalido",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "73987d30-301e-4533-83c9-dddc2cac67af",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Material\": \"Madeira\",\n    \"Acabamento\": \"Natural\",\n    \"Dimensao\": {\n        \"Altura\": 20,\n        \"Largura\": 10,\n        \"Comprimento\": 40\n    },\n    \"Partes\": []\n}"
+						},
+						"url": {
+							"raw": "http://localhost:1337/api/ItemDeProduto/{{id_gaveta2}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"ItemDeProduto",
+								"{{id_gaveta2}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put Espelho Ocupacao Invalido",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "17b85342-5526-4596-8dca-373e70bb0354",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"Material\":\"Aluminio\",\r\n\t\"Acabamento\":\"Anodizado\",\r\n\t\"Dimensao\" : { \r\n\t\t\"Comprimento\":13,\r\n\t\t\"Largura\":8,\r\n\t\t\"Altura\":100\r\n\t}\r\n}\r\n\r\n"
+						},
+						"url": {
+							"raw": "http://localhost:1337/api/ItemDeProduto/{{id_espelho}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"ItemDeProduto",
+								"{{id_espelho}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put Armario Caber Invalido",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f2eb5f11-2f5d-4364-9d16-10d9ec041241",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Material\": \"Madeira\",\n    \"Acabamento\": \"Natural\",\n    \"Dimensao\": {\n        \"Altura\": 100,\n        \"Largura\": 14,\n        \"Comprimento\": 40\n    },\n    \"Partes\": []\n}"
+						},
+						"url": {
+							"raw": "http://localhost:1337/api/ItemDeProduto/{{id_armario1}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"ItemDeProduto",
+								"{{id_armario1}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put Armario Material Invalido",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d035ac24-d894-408a-815d-7d0939a90640",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Material\": \"Aluminio\",\n    \"Acabamento\": \"Anodizado\",\n    \"Dimensao\": {\n        \"Altura\": 100,\n        \"Largura\": 15,\n        \"Comprimento\": 40\n    },\n    \"Partes\": []\n}"
+						},
+						"url": {
+							"raw": "http://localhost:1337/api/ItemDeProduto/{{id_armario1}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"ItemDeProduto",
+								"{{id_armario1}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post Encomenda",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "34b85ffb-8789-4780-9b35-18937ce1ce41",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"    var jsonData = pm.response.json();",
+									"    pm.globals.set(\"id_encomenda\", jsonData.id);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"Cliente\" : \"abcd\",\n\t\"Items\" : [{{id_armario1}}]\n}"
+						},
+						"url": {
+							"raw": "http://localhost:1337/api/Encomenda",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"Encomenda"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remover Porta (Obrigatoria)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "898f9b76-3dc4-47f1-8690-2057e40d5cf8",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:1337/api/ItemDeProduto/{{id_armario1}}/RemoverParte/{{id_porta_1}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"ItemDeProduto",
+								"{{id_armario1}}",
+								"RemoverParte",
+								"{{id_porta_1}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Finalizar Encomenda FAIL",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d5b5bbf6-47c4-41df-9f92-c0ba18c92333",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/javascript",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:1337/api/Encomenda/{{id_encomenda}}/Finalizar",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"Encomenda",
+								"{{id_encomenda}}",
+								"Finalizar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adicionar Porta (Obrigatoria)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8aa3e3f5-a769-45ce-a0df-73241cc4f5a9",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:1337/api/ItemDeProduto/{{id_armario1}}/AdicionarParte/{{id_porta_1}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"ItemDeProduto",
+								"{{id_armario1}}",
+								"AdicionarParte",
+								"{{id_porta_1}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adicionar Item a Encomenda",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4a3ee29c-0175-482f-80da-17a6de7ab161",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/javascript",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:1337/api/Encomenda/{{id_encomenda}}/AdicionarItem/{{id_espelho}}",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"Encomenda",
+								"{{id_encomenda}}",
+								"AdicionarItem",
+								"{{id_espelho}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remover Item de Encomenda",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f382c585-f4e7-4926-bc45-679987c6ea22",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/javascript"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:1337/api/Encomenda/{{id_encomenda}}/RemoverItem/{{id_espelho}}",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"Encomenda",
+								"{{id_encomenda}}",
+								"RemoverItem",
+								"{{id_espelho}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Finalizar Encomenda",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d5b5bbf6-47c4-41df-9f92-c0ba18c92333",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/javascript",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:1337/api/Encomenda/{{id_encomenda}}/Finalizar",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"Encomenda",
+								"{{id_encomenda}}",
+								"Finalizar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adicionar Item a Encomenda Fail",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4a3ee29c-0175-482f-80da-17a6de7ab161",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/javascript"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:1337/api/Encomenda/{{id_encomenda}}/AdicionarItem/{{id_espelho}}",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"Encomenda",
+								"{{id_encomenda}}",
+								"AdicionarItem",
+								"{{id_espelho}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Encomenda",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1dd7c75b-2fcd-4369-8b1b-91fa58077e58",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:1337/api/Encomenda/{{id_encomenda}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"Encomenda",
+								"{{id_encomenda}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Empty MongoDB",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1dd7c75b-2fcd-4369-8b1b-91fa58077e58",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:1337/api/Debug/Delete",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"Debug",
+								"Delete"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "todo",
+			"item": []
+		}
+	]
+}

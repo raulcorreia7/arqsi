@@ -1,0 +1,24 @@
+<h1 mat-dialog-title>Gestão de Partes</h1>
+
+<mat-dialog-content>
+  <mat-form-field>
+        <mat-select placeholder="Item Produto" [(ngModel)]="item">
+      <mat-option *ngFor="let item of listaitens" [value]="item">
+        {{item.Nome}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="adicionarParte(item)"><i class="material-icons">add</i></button>
+  <div *ngIf="partes">
+    <table *ngFor="let item of partes">
+      <td>{{item.Nome}}</td>
+      <td><button mat-button (click)="removerParte(item)"><i class="material-icons">delete</i></button></td>
+    </table>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-raised-button (click)="close()">
+    Fechar
+  </button>
+</mat-dialog-actions>

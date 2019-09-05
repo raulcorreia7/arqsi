@@ -1,0 +1,48 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<mat-sidenav-container>
+  <mat-sidenav [(opened)]="_opened" position="end" mode="push">
+    <br><br>
+    <h3>Selecionar Encomenda</h3>
+    <mat-form-field>
+      <mat-select placeholder="Clientes" [(ngModel)]="encomenda">
+        <mat-option *ngFor="let e of encomendas" [value]="e">
+          {{e.cliente}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div *ngIf="encomenda">
+      <table *ngFor="let item of encomenda.items">
+        <td>{{item.nome}}</td>
+        <td><button mat-button color="warn" (click)="removerItemEncomenda(item._id)"><i class="material-icons">delete</i></button></td>
+      </table>
+      <br><br>
+      <button mat-button color="primary" (click)="finalizarEncomenda()">Finalizar <mat-icon>send</mat-icon></button>
+    </div>
+    <hr>
+    <h3>Criar Encomenda</h3>
+    <mat-form-field>
+      <input #clienteEncomenda matInput placeholder="Nome cliente">
+    </mat-form-field>
+    <button mat-raised-button (click)="adicionarEncomenda(clienteEncomenda.value)">Iniciar Encomenda</button>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div style="text-align:center">
+      <ul>
+        <a class="navbar-brand">[ ] {{title}}</a>
+        <li class="nav-item"><a class="nav-link" routerLink="/dashboard" routerLinkActive="active-link">
+            <mat-icon>home</mat-icon> Home
+          </a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/catalogo" routerLinkActive="active-link">
+            <mat-icon>local_library</mat-icon> Catálogo
+          </a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/itensproduto" routerLinkActive="active-link">
+            <mat-icon>layers</mat-icon> Itens
+          </a></li>
+        <li class="nav-item" style="float: right;"><a class="nav-link" (click)="_toggleSidebar()">
+            <mat-icon>shopping_cart</mat-icon>
+          </a></li>
+      </ul>
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

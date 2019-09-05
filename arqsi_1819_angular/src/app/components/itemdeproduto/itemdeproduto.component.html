@@ -1,0 +1,65 @@
+<h1 mat-dialog-title>{{nome}}</h1>
+<form [formGroup]="form">
+  <mat-dialog-content>
+    <section>
+      <h3>Comprimento</h3>
+      <div *ngIf="tipoComprimento == 'discreto'; else comprimentoContinuo">
+        <mat-select formControlName="comprimento">
+          <mat-option *ngFor="let c of comprimento" [value]="c">
+            {{c}}
+          </mat-option>
+        </mat-select>
+      </div>
+      <ng-template #comprimentoContinuo>
+        <mat-slider formControlName="comprimento" thumbLabel min="{{comprimento[0]}}" max="{{comprimento[1]}}"></mat-slider>
+      </ng-template>
+    </section>
+    <section>
+      <h3>Largura</h3>
+      <div *ngIf="tipoLargura == 'discreto'; else larguraContinuo">
+        <mat-select formControlName="largura">
+          <mat-option *ngFor="let l of largura" [value]="l">
+            {{l}}
+          </mat-option>
+        </mat-select>
+      </div>
+      <ng-template #larguraContinuo>
+        <mat-slider formControlName="largura" thumbLabel min="{{largura[0]}}" max="{{largura[1]}}"></mat-slider>
+      </ng-template>
+    </section>
+    <section>
+      <h3>Altura</h3>
+      <div *ngIf="tipoAltura == 'discreto'; else alturaContinuo">
+        <mat-select formControlName="altura">
+          <mat-option *ngFor="let a of altura" [value]="a">
+            {{a}}
+          </mat-option>
+        </mat-select>
+      </div>
+
+      <ng-template #alturaContinuo>
+        <mat-slider formControlName="altura" thumbLabel min="{{altura[0]}}" max="{{altura[1]}}"></mat-slider>
+      </ng-template>
+    </section>
+
+    <section>
+      <h3>Material e Acabamento</h3>
+      <mat-select formControlName="materialacabamento">
+        <mat-option *ngFor="let ma of materialacabamento" [value]="ma">
+          {{ma}}
+        </mat-option>
+      </mat-select>
+    </section>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button mat-raised-button color="primary" (click)="save()">
+      Concretizar
+    </button>
+
+    <button mat-raised-button (click)="close()">
+      Fechar
+    </button>
+
+  </mat-dialog-actions>
+</form>

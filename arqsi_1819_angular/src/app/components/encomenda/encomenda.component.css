@@ -1,0 +1,22 @@
+table {
+    width: 50%;
+    margin: auto;
+}
+
+th.mat-header-cell {
+  text-align: center; 
+}
+
+tr:hover td {
+  background-color: #6270c2;
+}
+
+.mat-column-acoes {
+  text-align: left;
+  width: 150px;
+}
+
+.mat-button {
+  min-width: auto;
+  padding: 0 10px;
+}
